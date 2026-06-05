@@ -231,7 +231,7 @@ async function buildQuestEmbed(content, quest, assets) {
         content: `## ${i18n.tasks}`
       }, {
         type: 10,
-        content: `${i18n.task_condition}\n${taskList}`
+        content: `${i18n.task_condition[config.task_config_v2?.tasks.join_operator]}\n${taskList}`
       }, {
         type: 14, divider: true, spacing: 1
       }, {
@@ -240,7 +240,7 @@ async function buildQuestEmbed(content, quest, assets) {
           type: 10, content: `## ${i18n.rewards}`
         }, { 
           type: 10, 
-          content: `**${i18n.reward_type}:** Virtual Currency\n**SKU ID:** \`${skuId}\`\n**${i18n.reward_name}:** ${rewardName}` 
+          content: `**SKU ID:** \`${skuId}\`\n**${i18n.reward_name}:** ${rewardName}` 
         }],
         accessory: {
           type: 11, 
