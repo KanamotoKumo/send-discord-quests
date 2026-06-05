@@ -193,6 +193,7 @@ async function buildQuestEmbed(content, quest, assets) {
     
     return `* ${taskName} (${minutes} minutes)`;
   }).join('\n');
+  const task_condition = config.task_config_v2?.tasks?.join_operator || "or";
 
   const primaryReward = config.rewards_config?.rewards?.[0];
   const rewardName = primaryReward?.messages?.name || "Unknown Reward";
@@ -208,17 +209,19 @@ async function buildQuestEmbed(content, quest, assets) {
   const heroUrl = config.assets?.hero ? `${CDN_BASE}${config.assets.hero}` : assets.discordQuests;
 
   embed.push({
-    type: 10,
-    content: `# ${i18n.new_quest} - [${questName}](${config.application?.link || 'https://discord.com'})`
-  }, {
-    type: 12,
-    items: [{
-      media: { url: heroUrl },
-      description: questName
-    }]
-  }, {
       type: 17,
       components: [{
+        type: 10,
+        content: `# ${i18n.new_quest} - [${questName}](${config.application?.link || 'https://discord.com'})`
+      }, {
+        type: 12,
+        items: [{
+          media: { url: heroUrl },
+          description: questName
+        }]
+      }, {
+        type: 14, divider: true, spacing: 1 
+      }, {
         type: 10,
         content: `## ${i18n.quest_info}`
       }, {
@@ -231,7 +234,7 @@ async function buildQuestEmbed(content, quest, assets) {
         content: `## ${i18n.tasks}`
       }, {
         type: 10,
-        content: `${i18n.task_condition[config.task_config_v2?.tasks.join_operator]}\n${taskList}`
+        content: `${i18n.task_condition[task_condition]}\n${taskList}`
       }, {
         type: 14, divider: true, spacing: 1
       }, {
