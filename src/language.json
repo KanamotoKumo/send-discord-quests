@@ -1,0 +1,32 @@
+{
+  "vi": {
+    "new_quest": "Nhiệm vụ mới",
+    "quest_info": "Thông tin Nhiệm vụ",
+    "duration": "Thời gian",
+    "game": "Trò chơi",
+    "application": "Ứng dụng",
+    "tasks": "Nhiệm vụ cần làm",
+    "task_condition": {
+      "or": "Người dùng phải hoàn thành bất kỳ nhiệm vụ nào dưới đây",
+      "and": "Người dùng phải hoàn thành tất cả nhiệm vụ dưới đây"
+    },
+    "rewards": "Phần thưởng",
+    "reward_name": "Tên phần thưởng",
+    "error_title": "Quest Tracker — Lỗi hệ thống"
+  },
+  "en-US": {
+    "new_quest": "New Quest",
+    "quest_info": "Quest Info",
+    "duration": "Duration",
+    "game": "Game",
+    "application": "Application",
+    "tasks": "Tasks",
+    "task_condition": {
+      "or": "User must complete any of the following tasks",
+      "and": "User must complete all of the following tasks"
+    },
+    "rewards": "Rewards",
+    "reward_name": "Name",
+    "error_title": "Quest Tracker — Error Notice"
+  }
+}
