@@ -1,11 +1,11 @@
-# Disclaimer
-Công cụ được thiết kế cho việc sử dụng cá nhân bởi bạn và dự án này sử dụng token discord của bạn để hoạt động vì thế chúng tôi sẽ không chịu bất kỳ trách nghiệm nào nếu bạn sử dụng nó và bị ban hay bị hạn chế tài khoản, bạn chịu hoàn toàn trách nghiệm với việc bạn làm.
-
 # 🎯 Discord Quest Tracker
 
 Tự động theo dõi Discord Quests mỗi 5 phút và gửi thông báo webhook **chỉ khi có quest mới**.
 
-## Cấu trúc
+## ⚠️ Disclaimer
+Công cụ được thiết kế cho việc sử dụng cá nhân bởi bạn và dự án này sử dụng token discord của bạn để hoạt động vì thế chúng tôi sẽ không chịu bất kỳ trách nghiệm nào nếu bạn sử dụng nó và bị ban hay bị hạn chế tài khoản, bạn chịu hoàn toàn trách nghiệm với việc bạn làm.
+
+## 📂 Project Structure
 
 ```
 discord-quest/
@@ -23,9 +23,9 @@ discord-quest/
 └── state.json               ← Lưu trạng thái (tự quản lý, atomic write)
 ```
 
-## Cài đặt
+## 🛠️ Installation & Setup
 
-### 1. Fork và thêm Secrets vào repo
+#### 1. Fork và thêm Secrets vào repo
 
 Vào **Settings → Secrets and variables → Actions → New repository secret**:
 
@@ -36,11 +36,11 @@ Vào **Settings → Secrets and variables → Actions → New repository secret*
 | `ERROR_WEBHOOK` | URL webhook kênh báo lỗi (có thể để trống) |
 | `PING_ROLE_ID` | ID role muốn ping (có thể để trống) |
 
-### 2. Bật GitHub Actions
+#### 2. Bật GitHub Actions
 
 Vào tab **Actions** → bật nếu bị tắt → chạy thủ công lần đầu để test.
 
-## Cách hoạt động
+## ⚙️ How It Works?
 
 ```
 Mỗi 5 phút
@@ -57,7 +57,7 @@ Không có mới? → Kết thúc yên lặng
 Commit state.json lên repo
 ```
 
-## File state.json
+## 📦 File state.json
 
 Tệp này do bot tự quản lý. Bạn có thể:
 - **Xem**: mở trực tiếp trên GitHub
@@ -67,6 +67,6 @@ Tệp này do bot tự quản lý. Bạn có thể:
 **Cơ chế an toàn:** script ghi vào `state.tmp.json` trước, sau đó rename sang `state.json`.  
 Nếu lỗi giữa chừng → `state.json` cũ vẫn còn nguyên, không mất dữ liệu.
 
-## Acknowledgements
+## 🤝 Acknowledgements
 Cảm ơn dự án và tài liệu sau đã giúp hoàn thành dự án này:
 - [cc-plugins](https://github.com/BachLe2000/cc-plugins/tree/master)
