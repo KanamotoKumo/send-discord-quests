@@ -176,7 +176,7 @@ const formatDate = (isoString) => {
   const day = String(d.getDate()).padStart(2, '0');
   const month = String(d.getMonth() + 1).padStart(2, '0');
   const year = d.getFullYear();
-  return `<t:${timestamp}>`;
+  return `<t:${timestamp}:d>`;
 };
 
 async function buildQuestEmbed(content, quest, assets) {
@@ -207,6 +207,9 @@ async function buildQuestEmbed(content, quest, assets) {
   const questName = config.messages?.quest_name || "New Quest";
   const gameTitle = config.messages?.game_title || "Unknown Game";
   const gamePublisher = config.messages?.game_publisher || "Unknown Publisher";
+
+  const applicationLink = config.application?.link || 'https://discord.com';
+  const applicationName = config.application?.name || "";
   const applicationId = config.application?.id || "";
   const questId = quest.id || "";
 
@@ -216,7 +219,7 @@ async function buildQuestEmbed(content, quest, assets) {
 
   subComponents.push({
     type: 10,
-    content: `# ${i18n.new_quest} - [${questName}](${config.application?.link || 'https://discord.com'})`
+    content: `# ${i18n.new_quest} - [${questName}](${applicationLink})`
   }, {
     type: 12,
     items: [{
@@ -230,7 +233,7 @@ async function buildQuestEmbed(content, quest, assets) {
     content: `## ${i18n.quest_info}`
   }, {
     type: 10,
-    content: `**${i18n.duration}:** ${durationStr}\n**${i18n.game}:** ${gameTitle} (${gamePublisher})\n**${i18n.application}:** [${gameTitle.toUpperCase()}](${config.application?.link || '#'}) (\`${applicationId}\`)`
+    content: `**${i18n.duration}:** ${durationStr}\n**${i18n.game}:** ${gameTitle} (${gamePublisher})\n**${i18n.application}:** [${applicationName}](${applicationLink}) (\`${applicationId}\`)`
   }, {
     type: 14, divider: true, spacing: 1 
   }, {
