@@ -121,6 +121,7 @@ async function sendWebhook(url, payload, useComponentsV2 = false) {
     body: JSON.stringify(payload),
   });
   if (!res.ok) throw new Error(`Webhook ${res.status}: ${await res.text().catch(() => '')}`);
+  console.error(JSON.stringify(res));
 }
 
 async function sendErrorNotice(message) {
