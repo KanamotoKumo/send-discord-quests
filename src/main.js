@@ -55,12 +55,26 @@ function loadLanguagePack() {
   } catch (err) { warn(`Không thể đọc file language.json: ${err.message}. Dùng cấu hình dự phòng.`); }
 
   return {
-    new_quest: "New Quest", quest_info: "Quest Info", duration: "Duration",
-    platforms: "Redeemable Platforms", game: "Game", application: "Application",
-    tasks: "Tasks", task_condition: "User must complete any of the following tasks",
-    rewards: "Rewards", reward_type: "Reward Type", reward_name: "Name", reward_expires: "Reward Expires",
-    orbs_amount: "Orbs Amount", error_title: "Quest Tracker — Error"
-  };
+    "new_quest": "New Quest",
+    "quest_info": "Quest Info",
+    "duration": "Duration",
+    "game": "Game",
+    "application": "Application",
+    "tasks": "Tasks",
+    "task_condition": {
+      "or": "User must complete any of the following tasks",
+      "and": "User must complete all of the following tasks"
+    },
+    "rewards": "Rewards",
+    "platforms": "Redeemable Platforms",
+    "reward_type": "Reward Type",
+    "reward_name": {
+      "normal": "Name",
+      "extra": "Nitro"
+    },
+    "reward_expires": "Expires",
+    "error_title": "Quest Tracker — Error Notice"
+  }
 }
 const i18n = loadLanguagePack();
 
@@ -198,8 +212,10 @@ async function buildQuestEmbed(content, quest, assets) {
 
   const primaryReward = config.rewards_config?.rewards?.[0];
   const rewardName = primaryReward?.messages?.name || "Unknown Reward";
-  let extraReward = ""; if (rewardName.toLowerCase().includes('orb') && primaryReward?.premium_orb_quantity) {
-    extraReward = `\n**${i18n.reward_name.extra}:** ${rewardName.replace(primaryReward?.orb_quantity, primaryReward?.premium_orb_quantity)}`;
+  let extraReward = ""; if (String(rewardName).toLowerCase().includes('orb') && primaryReward?.premium_orb_quantity) {
+    const normalQty = String(primaryReward?.orb_quantity || '');
+    const premiumQty = String(primaryReward?.premium_orb_quantity || '');
+    extraReward = `\n**${i18n.reward_name.extra}:** ${String(rewardName).replace(normalQty, premiumQty)}`;
   }; const rewardExpires = `${formatDate(config.rewards_config?.rewards_expire_at)}`;
   let currentRewardIcon = assets.rewardIconUrl;
   const skuId = primaryReward?.sku_id || "";
@@ -250,7 +266,7 @@ async function buildQuestEmbed(content, quest, assets) {
       type: 10, content: `## ${i18n.rewards}`
     }, { 
       type: 10, 
-      content: `**SKU ID:** \`${skuId}\`\n**${i18n.reward_name.normal}:** ${rewardName}${extraReward}\n**${i18n.reward_expires}:** ${rewardExpires}` 
+      content: `**${i18n.reward_name.normal}:** ${rewardName}${extraReward}\n**${i18n.sku_id}:** \`${skuId}\`\n**${i18n.reward_expires}:** ${rewardExpires}` 
     }],
     accessory: {
       type: 11, 
@@ -260,7 +276,7 @@ async function buildQuestEmbed(content, quest, assets) {
     type: 14, divider: true, spacing: 1
   }, {
     type: 10,
-    content: `Quest ID: \`${questId}\``
+    content: `${i18n.quest_id}: \`${questId}\``
   });
 
   embed.push({
