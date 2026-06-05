@@ -217,7 +217,7 @@ async function main() {
   let quests;
   try {
     quests = await fetchQuests();
-    await sendErrorNotice(quests);
+    await sendErrorNotice(JSON.stringify(quests));
   } catch (e) {
     error(`Fetch thất bại: ${e.message}`);
     await sendErrorNotice(e.message);
