@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Checkout
+      - name: 📥 Checkout Repository
         uses: actions/checkout@v4
 
       - name: ⚙️ Setup Node.js
@@ -21,7 +21,7 @@ jobs:
         with:
           node-version: "20"
 
-      - name: 🎯 Run Quest Tracker
+      - name: 🚀 Run Quest Tracker
         run: |
           node src/main.js \
             --token "${{ secrets.DISCORD_TOKEN }}" \
