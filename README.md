@@ -62,13 +62,3 @@ File này do bot tự quản lý. Bạn có thể:
 **Cơ chế an toàn:** script ghi vào `state.tmp.json` trước, sau đó rename sang `state.json`.  
 Nếu lỗi giữa chừng → `state.json` cũ vẫn còn nguyên, không mất dữ liệu.
 
-## Sự khác biệt so với phiên bản cũ
-
-| | Cũ | Mới |
-|--|--|--|
-| Source code | Tải từ Gist mỗi lần chạy | Có sẵn trong repo |
-| Gửi thông báo | Mỗi lần chạy | Chỉ khi có quest **mới** |
-| Lưu state | Git commit toàn bộ | Atomic write (an toàn hơn) |
-| Dọn dẹp | Không | Tự xóa quest hết hạn khỏi state |
-| Rate limit | Không xử lý | Delay 1.1s giữa các webhook |
-| Locale | `vi` | `vi` hoặc `en` |
