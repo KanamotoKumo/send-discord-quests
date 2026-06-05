@@ -30,20 +30,26 @@ discord-quest/
 
 ## 🛠️ Installation & Setup
 
-#### 1. Fork và thêm Secrets vào repo
+### 1. Fork và thêm Cấu hình vào repo
+> Vào **Settings → Secrets and variables → Actions**
 
-Vào **Settings → Secrets and variables → Actions → New repository secret**:
+##### Tại tab Secrets (Nhấn nút "New repository secret"):
 
 | Secret | Mô tả |
 |--------|-------|
 | `DISCORD_TOKEN` | User token Discord của bạn |
 | `MAIN_WEBHOOK` | URL webhook kênh thông báo chính |
 | `ERROR_WEBHOOK` | URL webhook kênh báo lỗi (có thể để trống) |
-| `PING_ROLE_ID` | ID role muốn ping (có thể để trống) |
 
-#### 2. Bật GitHub Actions
+##### Tại tab Variables (Nhấn nút "New repository variable"):
 
-Vào tab **Actions** → bật nếu bị tắt → chạy thủ công lần đầu để test.
+| Variable | Mô tả | Giá trị gợi ý |
+|----------|-------|---------------|
+| `LOCALE` | Ngôn ngữ hiển thị tiêu đề/nội dung của Quest | `vi`, `en-US`, `ja`, `zh-CN` |
+| `PING_ROLE_ID` | ID role Discord muốn tag kèm khi có thông báo | Điền ID Role (Có thể để trống) |
+
+### 2. Bật GitHub Actions
+> Vào tab **Actions** → bật nếu bị tắt → chạy thủ công lần đầu để test.
 
 ## ⚙️ How It Works?
 
