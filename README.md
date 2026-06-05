@@ -63,3 +63,7 @@ Tệp này do bot tự quản lý. Bạn có thể:
 
 **Cơ chế an toàn:** script ghi vào `state.tmp.json` trước, sau đó rename sang `state.json`.  
 Nếu lỗi giữa chừng → `state.json` cũ vẫn còn nguyên, không mất dữ liệu.
+
+## Acknowledgements
+Cảm ơn dự án và tài liệu sau đã giúp hoàn thành dự án này:
+- [cc-plugins]([https://github.com/username/repo-a](https://github.com/BachLe2000/cc-plugins/tree/master)
