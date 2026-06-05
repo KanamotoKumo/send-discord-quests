@@ -27,9 +27,10 @@ jobs:
             --token "${{ secrets.DISCORD_TOKEN }}" \
             --webhook "${{ secrets.MAIN_WEBHOOK }}" \
             --error-webhook "${{ secrets.ERROR_WEBHOOK }}" \
-            --ping-role "${{ secrets.PING_ROLE_ID }}" \
             --github-token "${{ secrets.GITHUB_TOKEN }}" \
-            --repository "${{ github.repository }}"
+            --ping-role "${{ vars.PING_ROLE_ID }}" \
+            --locale "${{ vars.LOCALE }}" \
+            --repository "${{ github.repository }}" 
 
       - name: 💾 Commit state
         run: |
