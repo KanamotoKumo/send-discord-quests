@@ -124,24 +124,27 @@ async function sendErrorNotice(message) {
 
 // ─── Embed Builder ────────────────────────────────────────────────────────────
 const getAttachments = async (path) => {
-  const githubUrl = `https://api.github.com/repos/${REPOSITORY}/contents/${path}`;
+  const githubUrl = `https://raw.githubusercontent.com/${REPOSITORY}/refs/heads/main/${path}`;
   try {
-    const response = await fetch(githubUrl, {
-      headers: {
-        'Authorization': `token ${GITHUB_TOKEN}`,
-        'Accept': 'application/vnd.github.v3.raw'
-      }
-    });
-    if (!response.ok) {
-      error(`Không tìm thấy ảnh trên GitHub (Status: ${response.status})`);
-      return null;
-    }
+    // const response = await fetch(githubUrl, {
+    //   headers: {
+    //     'Authorization': `token ${GITHUB_TOKEN}`,
+    //     'Accept': 'application/vnd.github.v3.raw'
+    //   }
+    // });
+    // if (!response.ok) {
+    //   error(`Không tìm thấy ảnh trên GitHub (Status: ${response.status})`);
+    //   return null;
+    // }
 
-    const arrayBuffer = await response.arrayBuffer();
-    const buffer = Buffer.from(arrayBuffer);
-    const base64Image = buffer.toString('base64');
-    const contentType = path.toLowerCase().endsWith('.png') ? 'image/png' : 'image/jpeg';
-    return `data:${contentType};base64,${base64Image}`;
+    // const arrayBuffer = await response.arrayBuffer();
+    // const buffer = Buffer.from(arrayBuffer);
+    // const base64Image = buffer.toString('base64');
+    // const contentType = path.toLowerCase().endsWith('.png') ? 'image/png' : 'image/jpeg';
+    // return `data:${contentType};base64,${base64Image}`;
+    const response = new URL(githubUrl);
+    response.searchParams.append('uuid', crypto.randomUUID());
+    return response.href;
 
   } catch (err) {
     error(`Lỗi hệ thống khi lấy ảnh: ${err.message}`);
