@@ -1,9 +1,9 @@
 # 🎯 Discord Quest Tracker
 
-Tự động theo dõi Discord Quests mỗi 5 phút và gửi thông báo webhook **chỉ khi có quest mới**.
+Automaticly tracking Discord Quests then send notification to webhook after every 5 minutes only when **it see new quest**. 
 
 ## ⚠️ Disclaimer
-Công cụ được thiết kế cho việc sử dụng cá nhân bởi bạn và dự án này sử dụng token discord của bạn để hoạt động vì thế chúng tôi sẽ không chịu bất kỳ trách nghiệm nào nếu bạn sử dụng nó và bị ban hay bị hạn chế tài khoản, bạn chịu hoàn toàn trách nghiệm với việc bạn làm.
+Discord-quest just created for use by yourself and this project using your token discord to working clearly. so, that why you can get ban by discord because of using token user. Use at your own risk
 
 ## 📂 Project Structure
 
@@ -14,75 +14,77 @@ discord-quest/
 │   └── workflows/
 │       ├── tracker.yml
 │       └── update-structure.yml
-├── assets/                        ← Assets của hệ thống
+├── assets/                        ← Assets of system
 │   ├── discord_quests.webp
 │   ├── discord.webp
 │   ├── empty.png
 │   ├── orbs.png
 │   └── quests.png
-├── src/                           ← Mã nguồn chính
-│   ├── languages/                 ← Cấu hình ngôn ngữ
+├── src/                           ← Main repo
+│   ├── languages/                 ← Language config
 │   │   ├── en-US.json
 │   │   └── vi-VN.json
 │   ├── generate-readme.js
-│   ├── main.js                    ← Script chạy chính
+│   ├── main.js                    ← Main script
 │   └── readme_map.json
 ├── package.json
 ├── README.md
-└── state.json                     ← Lưu trạng thái (Atomic write)
+└── state.json                     ← Atomic write
 ```
 <!-- END_METADATA_DISCORD_QUEST_TREE -->
 
 ## 🛠️ Installation & Setup
 
-### 1. Fork và thêm Cấu hình vào repo
-> Vào **Settings → Secrets and variables → Actions**
+### 1. Fork and config
+> **Settings → Secrets and variables → Actions**
 
-##### Tại tab Secrets (Nhấn nút "New repository secret"):
+##### In tab Secrets (Click "New repository secret"):
 
-| Secret | Mô tả |
-|--------|-------|
-| `DISCORD_TOKEN` | User token Discord của bạn |
-| `MAIN_WEBHOOK` | URL webhook kênh thông báo chính |
-| `ERROR_WEBHOOK` | URL webhook kênh báo lỗi (có thể để trống) |
+| Secret | Descriptions |
+|--------|--------------|
+| `DISCORD_TOKEN` | User token Discord |
+| `MAIN_WEBHOOK` | URL webhook main notification |
+| `ERROR_WEBHOOK` | URL webhook main errors log (it can be empty if you want) |
 
-##### Tại tab Variables (Nhấn nút "New repository variable"):
+##### In tab Variables (Click "New repository variable"):
 
-| Variable | Mô tả | Giá trị gợi ý |
+| Variable | Decriptions | value examples |
 |----------|-------|---------------|
-| `LOCALE` | Ngôn ngữ hiển thị tiêu đề/nội dung của Quest | `vi`, `en-US`, `ja`, `zh-CN` |
-| `PING_ROLE_ID` | ID role Discord muốn tag kèm khi có thông báo | Điền ID Role (Có thể để trống) |
+| `LOCALE` | Language display titles/information of Quest | `vi`, `en-US`, `ja`, `zh-CN` |
+| `PING_ROLE_ID` | ID role Discord you want to ping when it find a quest | fill with ID Role (or empty) |
 
-### 2. Bật GitHub Actions
-> Vào tab **Actions** → bật nếu bị tắt → chạy thủ công lần đầu để test.
+### 2. Turn on GitHub Actions
+> **Actions** → turn on (only if it's off) → test.
 
 ## ⚙️ How It Works?
 
 ```
-Mỗi 5 phút
+Every 5 minutes
     ↓
-Fetch /quests/@me từ Discord API
+Fetch /quests/@me from Discord API
     ↓
-So sánh với state.json
+Compare with state.json
     ↓
-Có quest mới? → Gửi embed bằng webhook
-              → Ping role (nếu có)
-              → Lưu ID vào state.json (atomic)
-Không có mới? → Kết thúc yên lặng
+When it has found new quest → Send embed using webhook
+              → Ping role (if so)
+              → Save ID in state.json (atomic)
+When it hasn't found → End
     ↓
-Commit state.json lên repo
+Commit state.json to repo
 ```
 
 ## 📦 File state.json
 
-Tệp này do bot tự quản lý. Bạn có thể:
-- **Xem**: mở trực tiếp trên GitHub
-- **Reset**: xóa hết `sent_ids` → bot sẽ gửi lại tất cả quest hiện tại
-- **Xóa 1 quest cụ thể**: xóa ID khỏi `sent_ids` → bot sẽ gửi lại quest đó
+Those files will be manage by bot. You can:
+- **Read**: using GitHub
+- **Reset**: delete all `sent_ids` → bot resend all present quest
+- **Delete 1 quest**: delete ID out of `sent_ids` → bot resend that quest
 
-**Cơ chế an toàn:** script ghi vào `state.tmp.json` trước, sau đó rename sang `state.json`.  
-Nếu lỗi giữa chừng → `state.json` cũ vẫn còn nguyên, không mất dữ liệu.
+**Safety mode:** script write to `state.tmp.json` first, then rename to `state.json`.  
+If errors when it's still running → `state.json` still here, datas still fine.
 
 ## 🤝 Acknowledgements
-Cảm ơn dự án và tài liệu sau đã giúp hoàn thành dự án này:
+Thank for this source give me a idea to create this repo:
 - [cc-plugins](https://github.com/BachLe2000/cc-plugins/tree/master)
+
+This repo made by vietnamese people
