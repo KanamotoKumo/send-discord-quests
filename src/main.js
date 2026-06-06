@@ -80,11 +80,11 @@ function loadLanguagePack() {
     "reward_expires": "Expires",
     "error_title": "Quest Tracker — Error Notice",
     "error": {
-      "new_quest": "*Unknown quest*",
-      "game_name": "*Unknown game*",
-      "game_publisher": "*Unknown publisher*",
-      "reward": "*Unknown reward*",
-      "sku": "*Unknown type*"
+      "new_quest": "*Unknown Quest*",
+      "game_name": "*Unknown*",
+      "game_publisher": "*Unknown*",
+      "reward": "*Unknown*",
+      "sku": "*Unknown*"
     }
   }
 const i18n = loadLanguagePack();
