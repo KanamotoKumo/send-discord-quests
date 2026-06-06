@@ -1,0 +1,33 @@
+{
+    "new_quest": "Nhiệm vụ mới",
+    "quest_id": "ID nhiệm vụ",
+    "quest_info": "Thông tin nhiệm vụ",
+    "duration": "Thời gian",
+    "game": "Trò chơi",
+    "application": "Ứng dụng",
+    "tasks": "Nhiệm vụ cần làm",
+    "task_condition": {
+        "or": "Người dùng phải hoàn thành bất kỳ nhiệm vụ nào dưới đây",
+        "and": "Người dùng phải hoàn thành tất cả nhiệm vụ dưới đây"
+    },
+    "rewards": "Phần thưởng",
+    "sku_id": "SKU ID",
+    "sku": {
+        "1287881739531976815": "Tiền tệ ảo"
+    },
+    "platforms": "Nền tảng nhận thưởng",
+    "reward_type": "Loại phần thưởng",
+    "reward_name": {
+        "normal": "Tên",
+        "extra": "Có nitro"
+    },
+    "reward_expires": "Hạn nhận thưởng",
+    "error_title": "Quest Tracker — Thông báo lỗi",
+    "error": {
+        "new_quest": "*Nhiệm vụ không xác định*",
+        "game_name": "*Không xác định*",
+        "game_publisher": "*Không xác định*",
+        "reward": "*Không xác định*",
+        "sku": "*Không xác định*"
+    }
+}

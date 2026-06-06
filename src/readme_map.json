@@ -1,10 +1,10 @@
 {
-  "START": "--- --- --- --- --- START - THIS - FILE --- --- --- --- ---",
-  ".github": "← GitHub Actions config",
-  "assets": "← Assets của hệ thống",
-  "src": "← Mã nguồn chính",
-  "main.js": "← Script chạy chính",
-  "language.json": "← File cấu hình ngôn ngữ",
-  "state.json": "← Lưu trạng thái (Atomic write)",
-  "THE_END": "--- --- --- --- --- END - THIS - FILE --- --- --- --- ---"
+    "START": "--- --- --- --- --- START - THIS - FILE --- --- --- --- ---",
+    ".github": "← GitHub Actions config",
+    "assets": "← Assets của hệ thống",
+    "src": "← Mã nguồn chính",
+    "main.js": "← Script chạy chính",
+    "language.json": "← File cấu hình ngôn ngữ",
+    "state.json": "← Lưu trạng thái (Atomic write)",
+    "THE_END": "--- --- --- --- --- END - THIS - FILE --- --- --- --- ---"
 }
