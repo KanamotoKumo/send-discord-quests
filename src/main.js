@@ -248,6 +248,7 @@ async function buildQuestEmbed(content, quest, assets) {
     const applicationName = config.application?.name || "";
     const applicationId = config.application?.id || "";
     const questId = quest.id || "";
+    const questLink = `https://canary.discord.com/quests/${questId}`;
 
     const CDN_BASE = "https://cdn.discordapp.com/";
     const heroUrl = config.assets?.hero ? `${CDN_BASE}${config.assets.hero}` : assets.discordQuests;
@@ -255,7 +256,7 @@ async function buildQuestEmbed(content, quest, assets) {
 
     subComponents.push({
         type: 10,
-        content: `# ${i18n.new_quest} - [${questName}](${applicationLink})`
+        content: `# ${i18n.new_quest} - [${questName}](${questLink})`
     }, {
         type: 12,
         items: [{
