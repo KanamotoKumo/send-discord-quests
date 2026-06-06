@@ -214,7 +214,7 @@ const formatDate = (isoString) => {
 
 function getReward(reward, rewardName) {
     const isPlaceholder = reward?.messages?.redemption_instructions_by_platform?.['0'] === 'PLACEHOLDER';
-    let extraReward; let keyword; const lowerRewardName = String(rewardName).toLowerCase();
+    let extraReward = ''; let keyword; const lowerRewardName = String(rewardName).toLowerCase();
     if (isPlaceholder) {
         if (lowerRewardName.includes('orb') && reward?.premium_orb_quantity) {
             const normalOrbs = String(reward?.orb_quantity || '');
