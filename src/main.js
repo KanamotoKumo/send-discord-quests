@@ -63,8 +63,9 @@ function loadLanguagePack() {
         },
         "rewards_title": "Rewards",
         "rewards": {
-            "orbs": "Virtual Currency",
-            "decoration": "Collectible"
+            "1": "Reward Code",
+            "3": "Collectible",
+            "4": "Virtual Currency"
         },
         "sku_id": "SKU ID",
         "platforms": "Redeemable Platforms",
@@ -213,16 +214,12 @@ const formatDate = (isoString) => {
 };
 
 function getReward(reward, rewardName) {
-    const isPlaceholder = reward?.messages?.redemption_instructions_by_platform?.['0'] === 'PLACEHOLDER';
-    let extraReward = ''; let keyword; const lowerRewardName = String(rewardName).toLowerCase();
-    if (isPlaceholder) {
-        if (lowerRewardName.includes('orb') && reward?.premium_orb_quantity) {
-            const normalOrbs = String(reward?.orb_quantity || '');
-            const premiumOrbs = String(reward?.premium_orb_quantity || '');
-            extraReward = `\n**${i18n.reward_name.extra}:** ${String(rewardName).replace(normalQty, premiumQty)}`;
-        }; keyword = lowerRewardName.includes('orb') ? 'orbs' : 'decoration';
-    } else keyword = Object.keys(i18n.rewards).find(key => lowerRewardName.includes(key.toLowerCase()));
-    return { rewardType: i18n.rewards[keyword] || i18n.error.reward_type, extraReward };
+    let extraReward = ''; if (reward?.type === 4 && reward?.premium_orb_quantity) {
+        const normalOrbs = String(reward?.orb_quantity || '');
+        const premiumOrbs = String(reward?.premium_orb_quantity || '');
+        extraReward = `\n**${i18n.reward_name.extra}:** ${String(rewardName).replace(normalQty, premiumQty)}`;
+    }; const keyword = Object.keys(i18n.rewards).find(key => reward?.type == key);
+    return { rewardType: i18n.rewards[String(keyword)] || i18n.error.reward_type, extraReward };
 }
 
 async function buildQuestEmbed(content, quest, assets) {

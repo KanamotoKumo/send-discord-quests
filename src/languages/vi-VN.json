@@ -13,8 +13,9 @@
     },
     "rewards_title": "Phần thưởng",
     "rewards": {
-        "orbs": "Tiền tệ ảo",
-        "decoration": "Vật phẩm sưu tầm"
+        "1": "Mã nhận thưởng",
+        "3": "Vật phẩm sưu tầm",
+        "4": "Tiền tệ ảo"
     },
     "sku_id": "SKU ID",
     "platforms": "Nền tảng nhận thưởng",

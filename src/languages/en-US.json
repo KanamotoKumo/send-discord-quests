@@ -13,8 +13,9 @@
     },
     "rewards_title": "Rewards",
     "rewards": {
-        "orbs": "Virtual Currency",
-        "decoration": "Collectible"
+        "1": "Reward Code",
+        "3": "Collectible",
+        "4": "Virtual Currency"
     },
     "sku_id": "SKU ID",
     "platforms": "Redeemable Platforms",
