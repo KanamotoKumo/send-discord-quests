@@ -333,7 +333,7 @@ async function main() {
   }
 
   log('Đang chuẩn bị tài nguyên hình ảnh từ GitHub...');
-  let avatarWebhook = await getAttachments('assets/quests.webp');
+  let avatarWebhook = await getAttachments('assets/quests.png');
   if (!avatarWebhook) avatarWebhook = await getAttachments('assets/discord.webp');
   const rewardIconUrl = await getAttachments('assets/orbs.png');
   const emptyIconUrl = await getAttachments('assets/empty.png');
