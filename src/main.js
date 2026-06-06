@@ -223,9 +223,9 @@ async function buildQuestEmbed(content, quest, assets) {
             .replace(/_/g, ' ')
             .replace(/^\w/, c => c.toUpperCase());
 
-        for (const type of ['video', 'video_low_res', 'video_hls']) {
+        try { for (const type of ['video', 'video_low_res', 'video_hls']) {
             videoUrl = task.assets[type].url; if (videoUrl) break;
-        }; return `* ${taskName} (${minutes} minutes)`;
+        }; } catch { }; return `* ${taskName} (${minutes} minutes)`;
     }).join('\n');
     const task_condition = config.task_config_v2?.join_operator || "or";
 
