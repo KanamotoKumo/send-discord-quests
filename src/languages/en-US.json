@@ -1,4 +1,5 @@
 {
+    "name": "Quest Tracker",
     "new_quest": "New Quest",
     "quest_id": "Quest ID",
     "quest_info": "Quest Info",
@@ -10,11 +11,12 @@
         "or": "User must complete any of the following tasks",
         "and": "User must complete all of the following tasks"
     },
-    "rewards": "Rewards",
-    "sku_id": "SKU ID",
-    "sku": {
-        "1287881739531976815": "Virtual Currency"
+    "rewards_title": "Rewards",
+    "rewards": {
+        "orbs": "Virtual Currency",
+        "decoration": "Collectible"
     },
+    "sku_id": "SKU ID",
     "platforms": "Redeemable Platforms",
     "reward_type": "Reward Type",
     "reward_name": {
@@ -28,6 +30,6 @@
         "game_name": "*Unknown*",
         "game_publisher": "*Unknown*",
         "reward": "*Unknown*",
-        "sku": "*Unknown*"
+        "reward_type": "*Unknown*"
     }
 }

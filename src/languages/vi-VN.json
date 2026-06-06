@@ -1,4 +1,5 @@
 {
+    "name": "Quest Tracker",
     "new_quest": "Nhiệm vụ mới",
     "quest_id": "ID nhiệm vụ",
     "quest_info": "Thông tin nhiệm vụ",
@@ -10,11 +11,12 @@
         "or": "Người dùng phải hoàn thành bất kỳ nhiệm vụ nào dưới đây",
         "and": "Người dùng phải hoàn thành tất cả nhiệm vụ dưới đây"
     },
-    "rewards": "Phần thưởng",
-    "sku_id": "SKU ID",
-    "sku": {
-        "1287881739531976815": "Tiền tệ ảo"
+    "rewards_title": "Phần thưởng",
+    "rewards": {
+        "orbs": "Tiền tệ ảo",
+        "decoration": "Vật phẩm sưu tầm"
     },
+    "sku_id": "SKU ID",
     "platforms": "Nền tảng nhận thưởng",
     "reward_type": "Loại phần thưởng",
     "reward_name": {
@@ -28,6 +30,6 @@
         "game_name": "*Không xác định*",
         "game_publisher": "*Không xác định*",
         "reward": "*Không xác định*",
-        "sku": "*Không xác định*"
+        "reward_type": "*Không xác định*"
     }
 }

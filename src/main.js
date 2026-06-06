@@ -49,6 +49,7 @@ function error(msg) { console.error(`[${new Date().toISOString()}] ❌  ${msg}`)
 function loadLanguagePack() {
     const LANG_FILE = path.join(LANG_FOLDER, LOCALE + '.json');
     const LANG_BKP = JSON.parse(fs.readFileSync(path.join(LANG_FOLDER, 'en-US.json'), 'utf8')) || {
+        "name": "Quest Tracker",
         "new_quest": "New Quest",
         "quest_id": "Quest ID",
         "quest_info": "Quest Info",
@@ -60,11 +61,12 @@ function loadLanguagePack() {
             "or": "User must complete any of the following tasks",
             "and": "User must complete all of the following tasks"
         },
-        "rewards": "Rewards",
-        "sku_id": "SKU ID",
-        "sku": {
-            "1287881739531976815": "Virtual Currency"
+        "rewards_title": "Rewards",
+        "rewards": {
+            "orbs": "Virtual Currency",
+            "decoration": "Collectible"
         },
+        "sku_id": "SKU ID",
         "platforms": "Redeemable Platforms",
         "reward_type": "Reward Type",
         "reward_name": {
@@ -78,7 +80,7 @@ function loadLanguagePack() {
             "game_name": "*Unknown*",
             "game_publisher": "*Unknown*",
             "reward": "*Unknown*",
-            "sku": "*Unknown*"
+            "reward_type": "*Unknown*"
         }
     };
 
@@ -210,6 +212,19 @@ const formatDate = (isoString) => {
     return `<t:${timestamp}:d>`;
 };
 
+function getReward(reward, rewardName) {
+    const isPlaceholder = reward?.messages?.redemption_instructions_by_platform?.['0'] === 'PLACEHOLDER';
+    let extraReward; let keyword; const lowerRewardName = String(rewardName).toLowerCase();
+    if (isPlaceholder) {
+        if (lowerRewardName.includes('orb') && reward?.premium_orb_quantity) {
+            const normalOrbs = String(reward?.orb_quantity || '');
+            const premiumOrbs = String(reward?.premium_orb_quantity || '');
+            extraReward = `\n**${i18n.reward_name.extra}:** ${String(rewardName).replace(normalQty, premiumQty)}`;
+        }; keyword = lowerRewardName.includes('orb') ? 'orbs' : 'decoration';
+    } else keyword = Object.keys(i18n.rewards).find(key => lowerRewardName.includes(key.toLowerCase()));
+    return { rewardType: i18n.rewards[keyword] || i18n.error.reward_type, extraReward };
+}
+
 async function buildQuestEmbed(content, quest, assets) {
     const config = quest.config;
     if (!config) return null;
@@ -223,35 +238,36 @@ async function buildQuestEmbed(content, quest, assets) {
             .replace(/_/g, ' ')
             .replace(/^\w/, c => c.toUpperCase());
 
-        try { for (const type of ['video', 'video_low_res', 'video_hls']) {
-            videoUrl = task.assets[type].url; if (videoUrl) break;
-        }; } catch { }; return `* ${taskName} (${minutes} minutes)`;
+        try {
+            for (const type of ['video', 'video_low_res', 'video_hls']) {
+                videoUrl = task.assets[type].url; if (videoUrl) break;
+            };
+        } catch { }; return `* ${taskName} (${minutes} minutes)`;
     }).join('\n');
     const task_condition = config.task_config_v2?.join_operator || "or";
 
     const primaryReward = config.rewards_config?.rewards?.[0];
     const rewardName = primaryReward?.messages?.name || i18n.error.reward;
-    let extraReward = ""; if (String(rewardName).toLowerCase().includes('orb') && primaryReward?.premium_orb_quantity) {
-        const normalQty = String(primaryReward?.orb_quantity || '');
-        const premiumQty = String(primaryReward?.premium_orb_quantity || '');
-        extraReward = `\n**${i18n.reward_name.extra}:** ${String(rewardName).replace(normalQty, premiumQty)}`;
-    }; const rewardExpires = `${formatDate(config.rewards_config?.rewards_expire_at)}`;
-    let currentRewardIcon = assets.rewardIconUrl;
-    const skuId = primaryReward?.sku_id || "";
-    const rewardType = i18n.sku[skuId] || i18n.error.sku;
+    const rewardExpires = `${formatDate(config.rewards_config?.rewards_expire_at)}`;
+    const skuId = primaryReward?.sku_id || '';
+    const rewards = getReward(primaryReward, rewardName);
+    const rewardType = rewards?.rewardType;
+    const extraReward = rewards?.extraReward;
 
     const questName = config.messages?.quest_name || i18n.error.new_quest;
     const gameTitle = config.messages?.game_title || i18n.error.game_name;
     const gamePublisher = config.messages?.game_publisher || i18n.error.game_publisher;
 
-    const applicationLink = config.application?.link || "https://discord.com/";
-    const applicationName = config.application?.name || "";
-    const applicationId = config.application?.id || "";
-    const questId = quest.id || "";
+    const questId = quest.id || '';
     const questLink = `https://canary.discord.com/quests/${questId}`;
 
-    const CDN_BASE = "https://cdn.discordapp.com/";
+    const applicationLink = config.application?.link || questLink || 'https://discord.com';
+    const applicationName = config.application?.name || '';
+    const applicationId = config.application?.id || '';
+
+    const CDN_BASE = 'https://cdn.discordapp.com/';
     const heroUrl = config.assets?.hero ? `${CDN_BASE}${config.assets.hero}` : assets.discordQuests;
+    let currentRewardIcon = assets.rewardIconUrl;
     if (!rewardName.toLowerCase().includes('orb')) currentRewardIcon = (CDN_BASE + primaryReward?.asset) || assets.emptyIconUrl;
 
     subComponents.push({
@@ -284,7 +300,7 @@ async function buildQuestEmbed(content, quest, assets) {
     }, {
         type: 9,
         components: [{
-            type: 10, content: `## ${i18n.rewards}`
+            type: 10, content: `## ${i18n.rewards_title}`
         }, {
             type: 10,
             content: `**${i18n.reward_type}:** ${rewardType}\n**${i18n.sku_id}:** \`${skuId}\`\n**${i18n.reward_name.normal}:** ${rewardName}${extraReward}\n**${i18n.reward_expires}:** ${rewardExpires}`
@@ -317,7 +333,7 @@ async function buildQuestEmbed(content, quest, assets) {
     });
     return {
         flags: 1 << 15,
-        username: "Quests Tracker",
+        username: i18n.name,
         components: embed,
         avatar_url: assets.avatarWebhook
     };
