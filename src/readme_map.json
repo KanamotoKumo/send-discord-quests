@@ -4,7 +4,7 @@
     "assets": "← Assets của hệ thống",
     "src": "← Mã nguồn chính",
     "main.js": "← Script chạy chính",
-    "language.json": "← File cấu hình ngôn ngữ",
+    "languages": "← Cấu hình ngôn ngữ",
     "state.json": "← Lưu trạng thái (Atomic write)",
     "THE_END": "--- --- --- --- --- END - THIS - FILE --- --- --- --- ---"
 }
