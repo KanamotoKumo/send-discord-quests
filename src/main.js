@@ -216,14 +216,16 @@ async function buildQuestEmbed(content, quest, assets) {
 
     const embed = []; const subComponents = []; if (content) subComponents.push({ type: 10, content });
     const durationStr = `${formatDate(config.starts_at)} - ${formatDate(config.expires_at)}`;
-    const taskList = Object.values(config.task_config_v2?.tasks || {}).map(task => {
+    let videoUrl; const taskList = Object.values(config.task_config_v2?.tasks || {}).map(task => {
         const minutes = task.target ? task.target / 60 : 0;
         const taskName = task.type
             .toLowerCase()
             .replace(/_/g, ' ')
             .replace(/^\w/, c => c.toUpperCase());
 
-        return `* ${taskName} (${minutes} minutes)`;
+        for (const type of ['video', 'video_low_res', 'video_hls']) {
+            videoUrl = task.assets[type].url; if (videoUrl) break;
+        }; return `* ${taskName} (${minutes} minutes)`;
     }).join('\n');
     const task_condition = config.task_config_v2?.join_operator || "or";
 
@@ -249,7 +251,6 @@ async function buildQuestEmbed(content, quest, assets) {
 
     const CDN_BASE = "https://cdn.discordapp.com/";
     const heroUrl = config.assets?.hero ? `${CDN_BASE}${config.assets.hero}` : assets.discordQuests;
-    let heroVideoUrl; if (config.assets?.hero_video) heroVideoUrl = `${CDN_BASE}${config.assets.hero_video}`;
     if (!rewardName.toLowerCase().includes('orb')) currentRewardIcon = (CDN_BASE + primaryReward?.asset) || assets.emptyIconUrl;
 
     subComponents.push({
@@ -293,12 +294,12 @@ async function buildQuestEmbed(content, quest, assets) {
         }
     });
 
-    if (heroVideoUrl) subComponents.push({
+    if (videoUrl) subComponents.push({
         type: 14, divider: true, spacing: 1
     }, {
         type: 12,
         items: [{
-            media: { url: heroVideoUrl },
+            media: { url: videoUrl },
             description: applicationName
         }]
     });
