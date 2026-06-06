@@ -47,8 +47,8 @@ function error(msg) { console.error(`[${new Date().toISOString()}] ❌  ${msg}`)
 
 // ─── Language Pack Loader ─────────────────────────────────────────────────────
 function loadLanguagePack() {
-    const LANG_FILE = path.join(LANG_FOLDER, LOCALE);
-    const LANG_BKP = JSON.parse(fs.readFileSync(path.join(LANG_FOLDER, 'en-US'), 'utf8')) || {
+    const LANG_FILE = path.join(LANG_FOLDER, LOCALE + '.json');
+    const LANG_BKP = JSON.parse(fs.readFileSync(path.join(LANG_FOLDER, 'en-US.json'), 'utf8')) || {
         "new_quest": "New Quest",
         "quest_id": "Quest ID",
         "quest_info": "Quest Info",
