@@ -21,10 +21,11 @@
     "platforms": "Redeemable Platforms",
     "reward_type": "Reward Type",
     "reward_name": {
-        "normal": "Name",
+        "normal": "Reward Name",
         "extra": "Nitro"
     },
-    "reward_expires": "Expires",
+    "reward_expires": "Expires In",
+    "decor_expires": "Decoration Expiry",
     "error_title": "Quest Tracker — Error Notice",
     "error": {
         "new_quest": "*Unknown Quest*",

@@ -71,10 +71,11 @@ function loadLanguagePack() {
         "platforms": "Redeemable Platforms",
         "reward_type": "Reward Type",
         "reward_name": {
-            "normal": "Name",
+            "normal": "Reward Name",
             "extra": "Nitro"
         },
-        "reward_expires": "Expires",
+        "reward_expires": "Expires In",
+        "decor_expires": "Decoration Expiry",
         "error_title": "Quest Tracker — Error Notice",
         "error": {
             "new_quest": "*Unknown Quest*",
@@ -218,8 +219,10 @@ function getReward(reward, rewardName) {
         const normalOrbs = String(reward?.orb_quantity || '');
         const premiumOrbs = String(reward?.premium_orb_quantity || '');
         extraReward = `\n**${i18n.reward_name.extra}:** ${String(rewardName).replace(normalQty, premiumQty)}`;
-    }; const keyword = Object.keys(i18n.rewards).find(key => reward?.type == key);
-    return { rewardType: i18n.rewards[String(keyword)] || i18n.error.reward_type, extraReward };
+    }; let expires = ''; if (reward?.type === 3 && reward?.expires_at) expires = `\n**${i18n.decor_expires}:** ${formatDate(reward?.expires_at)}`;
+
+    const keyword = Object.keys(i18n.rewards).find(key => reward?.type == key);
+    return { rewardType: i18n.rewards[String(keyword)] || i18n.error.reward_type, extraReward, expires };
 }
 
 async function buildQuestEmbed(content, quest, assets) {
@@ -250,6 +253,7 @@ async function buildQuestEmbed(content, quest, assets) {
     const rewards = getReward(primaryReward, rewardName);
     const rewardType = rewards?.rewardType;
     const extraReward = rewards?.extraReward;
+    const decorExpires = rewards?.expires;
 
     const questName = config.messages?.quest_name || i18n.error.new_quest;
     const gameTitle = config.messages?.game_title || i18n.error.game_name;
@@ -300,7 +304,7 @@ async function buildQuestEmbed(content, quest, assets) {
             type: 10, content: `## ${i18n.rewards_title}`
         }, {
             type: 10,
-            content: `**${i18n.reward_type}:** ${rewardType}\n**${i18n.sku_id}:** \`${skuId}\`\n**${i18n.reward_name.normal}:** ${rewardName}${extraReward}\n**${i18n.reward_expires}:** ${rewardExpires}`
+            content: `**${i18n.reward_type}:** ${rewardType}${decorExpires}\n**${i18n.sku_id}:** \`${skuId}\`\n**${i18n.reward_name.normal}:** ${rewardName}${extraReward}\n**${i18n.reward_expires}:** ${rewardExpires}`
         }],
         accessory: {
             type: 11,
