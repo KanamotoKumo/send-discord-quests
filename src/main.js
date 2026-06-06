@@ -318,7 +318,13 @@ async function main() {
   }
 
   log(`Tìm thấy ${quests.length} quest(s) đang hoạt động.`);
-  const newQuests = quests.filter(q => !state.sent_ids.includes(q.id));
+  const now = new Date();
+  const newQuests = quests.filter(q => {
+    const hasConfig = q.config && q.config.expires_at;
+    const isNew = !state.sent_ids.includes(q.id);
+    const isNotExpired = hasConfig ? new Date(q.config.expires_at) > now : false;
+    return isNew && isNotExpired;
+  });
   if (newQuests.length === 0) {
     log('Không có quest mới. Kết thúc.');
     state.last_check = new Date().toISOString();
