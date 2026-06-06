@@ -1,6 +1,7 @@
 {
   "vi": {
     "new_quest": "Nhiệm vụ mới",
+    "quest_id": "ID nhiệm vụ",
     "quest_info": "Thông tin Nhiệm vụ",
     "duration": "Thời gian",
     "game": "Trò chơi",
@@ -11,6 +12,10 @@
       "and": "Người dùng phải hoàn thành tất cả nhiệm vụ dưới đây"
     },
     "rewards": "Phần thưởng",
+    "sku_id": "SKU ID",
+    "sku": {
+      "1287881739531976815": "Tiền tệ ảo"
+    },
     "platforms": "Nền tảng Nhận thưởng",
     "reward_type": "Loại phần thưởng",
     "reward_name": {
@@ -22,6 +27,7 @@
   },
   "en-US": {
     "new_quest": "New Quest",
+    "quest_id": "Quest ID",
     "quest_info": "Quest Info",
     "duration": "Duration",
     "game": "Game",
@@ -32,6 +38,10 @@
       "and": "User must complete all of the following tasks"
     },
     "rewards": "Rewards",
+    "sku_id": "SKU ID",
+    "sku": {
+      "1287881739531976815": "Virtual Currency"
+    },
     "platforms": "Redeemable Platforms",
     "reward_type": "Reward Type",
     "reward_name": {
