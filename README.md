@@ -77,7 +77,7 @@ Commit state.json lên repo
 
 Tệp này do bot tự quản lý. Bạn có thể:
 - **Xem**: mở trực tiếp trên GitHub
-- **Reset**: xóa hết `sent_ids` và `last_seen` → bot sẽ gửi lại tất cả quest hiện tại
+- **Reset**: xóa hết `sent_ids` → bot sẽ gửi lại tất cả quest hiện tại
 - **Xóa 1 quest cụ thể**: xóa ID khỏi `sent_ids` → bot sẽ gửi lại quest đó
 
 **Cơ chế an toàn:** script ghi vào `state.tmp.json` trước, sau đó rename sang `state.json`.  
