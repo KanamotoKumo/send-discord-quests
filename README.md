@@ -33,9 +33,9 @@ discord-quest/
 │   ├── languages/                ← Language config
 │   │   ├── en-US.json
 │   │   └── vi-VN.json
-│   ├── generate-readme.js
+│   ├── generateReadme.js
 │   ├── main.js                   ← Main script
-│   └── readme_map.json
+│   └── readmeMap.json
 ├── package.json
 ├── README.md
 └── state.json                    ← Atomic write
