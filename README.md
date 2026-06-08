@@ -36,6 +36,7 @@ discord-quest/
 │   ├── generateReadme.js
 │   ├── main.js                   ← Main script
 │   └── readmeMap.json
+├── LICENSE
 ├── package.json
 ├── README.md
 └── state.json                    ← Atomic write
