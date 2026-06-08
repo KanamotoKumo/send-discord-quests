@@ -12,12 +12,6 @@ discord-quest/
 │   └── workflows/
 │       ├── tracker.yml
 │       └── update-structure.yml
-├── assets/                        ← Assets of system
-│   ├── discord_quests.webp
-│   ├── discord.webp
-│   ├── empty.png
-│   ├── orbs.png
-│   └── quests.png
 ├── src/                           ← Main
 │   ├── languages/                 ← Language config
 │   │   ├── en-US.json
