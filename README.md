@@ -37,8 +37,8 @@ discord-quest/
 │   ├── main.js                   ← Main script
 │   └── readmeMap.json
 ├── LICENSE
-├── package.json
 ├── README.md
+├── package.json
 └── state.json                    ← Atomic write
 ```
 <!-- END_METADATA_DISCORD_QUEST_TREE -->
