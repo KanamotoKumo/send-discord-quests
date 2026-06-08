@@ -1,4 +1,4 @@
-# <p align="center"><b style="font-size: 20px; vertical-align: middle;;">Discord Quest Tracker</b></p>
+# <div align="center"><sub><img src="assets/quests.png" height="40"></sub> Discord Quest Tracker <sub><img src="assets/quests.png" height="40"></sub></div>
 Automaticly tracking Discord Quests then send notification to webhook after every 5 minutes only when **it see new quest**.
 
 ## ⚠️ Disclaimer
