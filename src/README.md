@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- ![Discord Quests Tracker Background][background] -->
-# <sub><img src="assets/quests.png" height="41"></sub> Discord Quest Tracker <sub><img src="assets/quests.png" height="41"></sub>
+# <sub><img src="https://raw.githubusercontent.com/${{ github.repository }}/refs/heads/assets/quests.png" height="41"></sub> Discord Quest Tracker <sub><img src="https://raw.githubusercontent.com/${{ github.repository }}/refs/heads/assets/quests.png" height="41"></sub>
 Automatically tracking Discord Quests then sending notifications to a webhook every 5 minutes only when **a new quest is found**.
 
 </div>
@@ -9,42 +9,14 @@ Automatically tracking Discord Quests then sending notifications to a webhook ev
 > [!WARNING]
 > **discord-quest** is a Discord Quests tracker developed solely for personal educational and monitoring purposes. To fetch current quests, this project requires your Discord user token to access Discord's internal API. Please note that using user tokens or self-bots violates Discord's Terms of Service and **may result in your account being permanently banned**. Use this software entirely at your own risk.
 
-## <div align="left"><sub><img src="assets/projectStructure.png" height="30"></sub> Project Structure </div>
+## <div align="left"><sub><img src="https://raw.githubusercontent.com/${{ github.repository }}/refs/heads/assets/projectStructure.png" height="30"></sub> Project Structure </div>
 <!-- START_METADATA_DISCORD_QUEST_TREE -->
 ```
-discord-quest/
-├── .github/                      ← GitHub Actions config
-│   └── workflows/
-│       ├── questsTracker.yml
-│       └── updateStructure.yml
-├── assets/                       ← Assets of system
-│   ├── acknowledgements.png
-│   ├── disclaimer.png
-│   ├── discord.png
-│   ├── discordQuests.png
-│   ├── empty.png
-│   ├── file.png
-│   ├── install.webp
-│   ├── orbs.png
-│   ├── projectStructure.png
-│   ├── quests.png
-│   └── settings.webp
-├── src/                          ← Main
-│   ├── languages/                ← Language config
-│   │   ├── en-US.json
-│   │   └── vi-VN.json
-│   ├── generateReadme.js
-│   ├── main.js                   ← Main script
-│   └── readmeMap.json
-├── LICENSE
-├── README.md
-├── package-lock.json
-├── package.json
-└── state.json                    ← Atomic write
+P R O J E C T     S T R U C T U R E
 ```
 <!-- END_METADATA_DISCORD_QUEST_TREE -->
 
-## <div align="left"><sub><img src="assets/install.webp" height="30"></sub> Installation & Setup </div>
+## <div align="left"><sub><img src="https://raw.githubusercontent.com/${{ github.repository }}/refs/heads/assets/install.webp" height="30"></sub> Installation & Setup </div>
 
 > [!TIP]
 > To clone this repository without downloading the hidden asset files, use the **Shallow Clone** command:
@@ -71,7 +43,7 @@ discord-quest/
 ### 2. Turn on GitHub Actions
 > **Actions** → turn on (only if it's off) → test.
 
-## <div align="left"><sub><img src="assets/settings.webp" height="30"></sub> How It Works? </div>
+## <div align="left"><sub><img src="https://raw.githubusercontent.com/${{ github.repository }}/refs/heads/assets/settings.webp" height="30"></sub> How It Works? </div>
 ```
 Every 5 minutes
       ↓
@@ -87,7 +59,7 @@ When no new quest is found → End
 Commit state.json to repository
 ```
 
-## <div align="left"><sub><img src="assets/file.png" height="30"></sub> File state.json </div>
+## <div align="left"><sub><img src="https://raw.githubusercontent.com/${{ github.repository }}/refs/heads/assets/file.png" height="30"></sub> File state.json </div>
 This file is automatically managed by the script. You can:
 - **Read**: Directly view it on GitHub.
 - **Reset**: Delete all IDs inside `sent_ids` → The bot will resend all currently active quests.
@@ -95,9 +67,11 @@ This file is automatically managed by the script. You can:
 
 **Safety mode:** The script writes data to `state.tmp.json` first, then renames it to `state.json`. If an error occurs while running, `state.json` remains intact and your data is safe.
 
-## <div align="left"><sub><img src="assets/acknowledgements.png" height="30"></sub> Acknowledgements </div>
+## <div align="left"><sub><img src="https://raw.githubusercontent.com/${{ github.repository }}/refs/heads/assets/acknowledgements.png" height="30"></sub> Acknowledgements </div>
 Special thanks to the following repository for inspiring this project:
 - [cc-plugins](https://github.com/BachLe2000/cc-plugins/tree/master)
 
 ###### <footer><div align="center">© 2026 Mc's Team. All rights reserved.</div></footer>
-[background]: assets/discordQuests.png
+
+<!-- README_VARIABLES -->
+[background]: https://raw.githubusercontent.com/${{ github.repository }}/refs/heads/assets/discordQuests.png
