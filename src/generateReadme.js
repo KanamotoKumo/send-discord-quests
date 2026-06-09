@@ -53,7 +53,7 @@ function generateTreeStructure(tree) {
         if (line.fullLineText.length > maxLength) maxLength = line.fullLineText.length;
     });
 
-    let result = 'discord-quest/\n';
+    let result = '${{ github.repository.name }}/\n';
     rawLines.forEach(line => {
         const comment = COMMENT_MAP[line.name];
         if (comment) {
@@ -73,16 +73,15 @@ function updateReadme() {
     }; let readmeContent = fs.readFileSync(README_TEMPLATE_PATH, 'utf8');
     const githubRepository = process.env.GITHUB_REPOSITORY || 'mc-none-vn/discord-quest';
 
-    readmeContent = readmeContent.replace(/\${{\s*github\.repository\s*}}/g, githubRepository);
-    readmeContent = readmeContent.replace(/\${{\s*github\.repository.name\s*}}/g, githubRepository.split('/')[1]);
     const tree = dirTree(ROOT, { attributes: ['type'], exclude: /$^/ });
     const treeText = generateTreeStructure(tree);
-
     const startTag = '<!-- START_METADATA_DISCORD_QUEST_TREE -->';
     const endTag = '<!-- END_METADATA_DISCORD_QUEST_TREE -->';
-
     const regex = new RegExp(`${startTag}[\\s\\S]*?${endTag}`);
     const newTreeBlock = `${startTag}\n\`\`\`\n${treeText}\`\`\`\n${endTag}`;
+
+    readmeContent = readmeContent.replace(/\${{\s*github\.repository\s*}}/g, githubRepository);
+    readmeContent = readmeContent.replace(/\${{\s*github\.repository.name\s*}}/g, githubRepository.split('/')[1]);
 
     if (readmeContent.match(regex)) {
         readmeContent = readmeContent.replace(regex, newTreeBlock);
