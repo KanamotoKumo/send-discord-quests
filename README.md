@@ -19,7 +19,6 @@ discord-quest/
 │       └── updateStructure.yml
 ├── assets/                       ← Assets of system
 │   ├── acknowledgements.png
-│   ├── disclaimer.png
 │   ├── discord.png
 │   ├── discordQuests.png
 │   ├── empty.png
@@ -38,6 +37,7 @@ discord-quest/
 │   ├── main.js                   ← Main script
 │   └── readmeMap.json
 ├── LICENSE
+├── README.md
 ├── package-lock.json
 ├── package.json
 └── state.json                    ← Atomic write
