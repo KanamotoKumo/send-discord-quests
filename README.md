@@ -12,7 +12,7 @@ Automatically tracking Discord Quests then sending notifications to a webhook ev
 ## <div align="left"><sub><img src="https://raw.githubusercontent.com/mc-none-vn/discord-quests/refs/heads/assets/projectStructure.png" height="30"></sub> Project Structure </div>
 <!-- START_METADATA_DISCORD_QUEST_TREE -->
 ```
-${{ github.repository.name }}/
+discord-quests/
 ├── .github/                      ← GitHub Actions config
 │   └── workflows/
 │       ├── questsTracker.yml
