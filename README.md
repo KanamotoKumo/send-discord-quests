@@ -17,7 +17,7 @@ discord-quests/
 │   └── workflows/
 │       ├── questsTracker.yml
 │       └── updateStructure.yml
-├── src/                          ← Main
+├── src/                          ← Main folder
 │   ├── languages/                ← Language config
 │   │   ├── en-US.json
 │   │   └── vi-VN.json
