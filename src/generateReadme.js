@@ -74,7 +74,7 @@ function updateReadme() {
     const githubRepository = process.env.GITHUB_REPOSITORY || 'mc-none-vn/discord-quest';
 
     readmeContent = readmeContent.replace(/\${{\s*github\.repository\s*}}/g, githubRepository);
-    readmeContent = readmeContent.replace(/\${{\s*github\.repository.name\s*}}/g, githubRepository.split('/')[1];
+    readmeContent = readmeContent.replace(/\${{\s*github\.repository.name\s*}}/g, githubRepository.split('/')[1]);
     const tree = dirTree(ROOT, { attributes: ['type'], exclude: /$^/ });
     const treeText = generateTreeStructure(tree);
 
