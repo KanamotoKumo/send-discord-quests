@@ -3,7 +3,7 @@ name: Discord Quest Tracker
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "0 */6 * * *"
 
 permissions:
   contents: write
@@ -11,7 +11,6 @@ permissions:
 jobs:
   track:
     runs-on: ubuntu-latest
-
     steps:
       - name: 📥 Checkout Repository
         uses: actions/checkout@v4
@@ -23,21 +22,46 @@ jobs:
 
       - name: 🚀 Run Quest Tracker
         run: |
-          node src/main.js \
-            --token "${{ secrets.DISCORD_TOKEN }}" \
-            --webhook "${{ secrets.MAIN_WEBHOOK }}" \
-            --error-webhook "${{ secrets.ERROR_WEBHOOK }}" \
-            --github-token "${{ secrets.GITHUB_TOKEN }}" \
-            --ping-role "${{ vars.PING_ROLE_ID }}" \
-            --locale "${{ vars.LOCALE }}" \
-            --repository "${{ github.repository }}" 
-
-      - name: 💾 Commit state
-        run: |
           git config --global user.name "quest-tracker [bot]"
           git config --global user.email "quest-tracker@users.noreply.github.com"
-          git add state.json
-          git diff --cached --quiet || git commit -m "chore: update quest state [skip ci]"
-          git push
+          END_TIME=$((SECONDS + 21000))
+
+          while [ $SECONDS -lt $END_TIME ]; do
+            START_LOOP=$SECONDS
+            echo "--- Khởi động chu kỳ fetch dữ liệu: $(date) ---"
+
+            node src/main.js \
+              --token "${{ secrets.DISCORD_TOKEN }}" \
+              --webhook "${{ secrets.MAIN_WEBHOOK }}" \
+              --error-webhook "${{ secrets.ERROR_WEBHOOK }}" \
+              --github-token "${{ secrets.GITHUB_TOKEN }}" \
+              --ping-role "${{ vars.PING_ROLE_ID }}" \
+              --locale "${{ vars.LOCALE }}" \
+              --repository "${{ github.repository }}" \
+            || echo "Somethings is wrongs."
+
+            if [ -f state.json ]; then
+              git add state.json
+              if ! git diff --cached --quiet; then
+                echo "Phát hiện thay đổi ở state.json, đang tiến hành commit..."
+                git commit -m "chore: update quest state [skip ci]"
+                
+                # Pull trước khi push đề phòng trường hợp có job cron khác đang chạy song song đẩy code lên trước
+                git pull --rebase
+                git push
+              else
+                echo "Không có thay đổi nào trong trạng thái Quest."
+              fi
+            fi
+
+            ELAPSED=$((SECONDS - START_LOOP))
+            SLEEP_TIME=$((300 - ELAPSED))
+            if [ $SLEEP_TIME -le 0 ]; then
+              SLEEP_TIME=10
+            fi
+
+            echo "Lượt fetch dữ liệu này tốn ${ELAPSED}s. Sẽ nghỉ trong ${SLEEP_TIME}s..."
+            sleep $SLEEP_TIME
+          done
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
