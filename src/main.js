@@ -268,8 +268,9 @@ async function buildQuestEmbed(content, quest, assets) {
 
     const CDN_BASE = 'https://cdn.discordapp.com/';
     const heroUrl = config.assets?.hero ? `${CDN_BASE}${config.assets.hero}` : assets.discordQuests;
-    let currentRewardIcon = assets.rewardIconUrl;
-    if (!rewardName.toLowerCase().includes('orb')) currentRewardIcon = (CDN_BASE + primaryReward?.asset) || assets.emptyIconUrl;
+    let currentRewardIconUrl = assets.rewardIconUrl;
+    if (!rewardName.toLowerCase().includes('orb')) currentRewardIconUrl = (CDN_BASE + primaryReward?.asset) || assets.emptyIconUrl;
+    const currentRewardIcon = new URL(currentRewardIconUrl); currentRewardIcon.searchParams.append('format', 'webp');
 
     subComponents.push({
         type: 10,
@@ -308,7 +309,7 @@ async function buildQuestEmbed(content, quest, assets) {
         }],
         accessory: {
             type: 11,
-            media: { url: currentRewardIcon }
+            media: { url: currentRewardIcon.href }
         }
     });
 
