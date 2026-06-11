@@ -21,10 +21,17 @@ discord-quests/
 │   ├── languages/                ← Language config
 │   │   ├── en-US.json
 │   │   └── vi-VN.json
+│   ├── discord.js
+│   ├── embed.js
 │   ├── generateReadme.js
+│   ├── language.js
+│   ├── logging.js
 │   ├── main.js                   ← Main script
+│   ├── module.js
 │   ├── readmeMap.json
-│   └── readmeSource.md
+│   ├── readmeSource.md
+│   ├── state.js
+│   └── webhook.js
 ├── LICENSE
 ├── README.md
 ├── package-lock.json
