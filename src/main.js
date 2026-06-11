@@ -363,6 +363,14 @@ async function main() {
         const isNotExpired = hasConfig ? new Date(q.config.expires_at) > now : false;
         return isNew && isNotExpired;
     });
+    if (newQuests.length > 0) {
+        newQuests.sort((a, b) => {
+            const timeA = new Date(a.config?.starts_at || 0).getTime();
+            const timeB = new Date(b.config?.starts_at || 0).getTime();
+            return timeA - timeB;
+        });
+        log('Đã sắp xếp thứ tự Quest: Cũ nhất sẽ được ưu tiên gửi trước.');
+    }
     if (newQuests.length === 0) {
         log('Không có quest mới. Tiến hành dọn state hết hạn.');
     } else {
