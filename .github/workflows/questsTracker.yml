@@ -20,6 +20,9 @@ jobs:
         with:
           node-version: "20"
 
+      - name: 📦 Install dependencies
+        run: npm ci
+
       - name: 🚀 Run Quest Tracker
         run: |
           git config --global user.name "quest-tracker [bot]"
@@ -45,8 +48,6 @@ jobs:
               if ! git diff --cached --quiet; then
                 echo "Phát hiện thay đổi ở state.json, đang tiến hành commit..."
                 git commit -m "chore: update quest state [skip ci]"
-                
-                # Pull trước khi push đề phòng trường hợp có job cron khác đang chạy song song đẩy code lên trước
                 git pull --rebase
                 git push
               else
