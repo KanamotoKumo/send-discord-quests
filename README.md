@@ -21,6 +21,7 @@ discord-quests/
 │   ├── languages/                ← Language config
 │   │   ├── en-US.json
 │   │   └── vi-VN.json
+│   ├── config.js
 │   ├── discord.js
 │   ├── embed.js
 │   ├── generateReadme.js
