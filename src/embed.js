@@ -1,5 +1,5 @@
 // ─── Embed Builder ────────────────────────────────────────────────────────────
-import { i18n } from './config.js';
+import { i18n } from './language.js';
 
 const formatDate = (isoString) => {
     if (!isoString) return "";
