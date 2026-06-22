@@ -1,4 +1,4 @@
-name: Discord Quest Tracker
+name: 📲 Discord Quest Tracker
 
 on:
   workflow_dispatch:
