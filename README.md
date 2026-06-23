@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- ![Discord Quests Tracker Background][background] -->
-# <sub><img src="https://raw.githubusercontent.com/mc-none-vn/discord-quests/refs/heads/assets/quests.png" height="41"></sub> Discord Quests Tracker <sub><img src="https://raw.githubusercontent.com/mc-none-vn/discord-quests/refs/heads/assets/quests.png" height="41"></sub>
+# <sub><img src="https://raw.githubusercontent.com/KanamotoKumo/send-discord-quests/refs/heads/assets/quests.png" height="41"></sub> Discord Quests Tracker <sub><img src="https://raw.githubusercontent.com/KanamotoKumo/send-discord-quests/refs/heads/assets/quests.png" height="41"></sub>
 Automatically tracking Discord Quests then sending notifications to a webhook every 5 minutes only when **a new quest is found**.
 
 </div>
@@ -11,7 +11,7 @@ Automatically tracking Discord Quests then sending notifications to a webhook ev
 
 ---
 
-# <div align="left"><sub><img src="https://raw.githubusercontent.com/mc-none-vn/discord-quests/refs/heads/assets/projectStructure.png" height="30"></sub> Project Structure </div>
+# <div align="left"><sub><img src="https://raw.githubusercontent.com/KanamotoKumo/send-discord-quests/refs/heads/assets/projectStructure.png" height="30"></sub> Project Structure </div>
 <!-- START_METADATA_DISCORD_QUEST_TREE -->
 ```
 send-discord-quests/
@@ -47,7 +47,7 @@ send-discord-quests/
 
 ---
 
-# <div align="left"><sub><img src="https://raw.githubusercontent.com/mc-none-vn/discord-quests/refs/heads/assets/install.webp" height="30"></sub> Installation & Setup </div>
+# <div align="left"><sub><img src="https://raw.githubusercontent.com/KanamotoKumo/send-discord-quests/refs/heads/assets/install.webp" height="30"></sub> Installation & Setup </div>
 Choose one of the two deployment methods below to host your tracker:
 
 ## Method 1: Running on GitHub Actions (Cloud 24/7 & Free)
@@ -110,7 +110,7 @@ To execute the tracker script directly, run:
 
 ---
 
-# <div align="left"><sub><img src="https://raw.githubusercontent.com/mc-none-vn/discord-quests/refs/heads/assets/settings.webp" height="30"></sub> How It Works? </div>
+# <div align="left"><sub><img src="https://raw.githubusercontent.com/KanamotoKumo/send-discord-quests/refs/heads/assets/settings.webp" height="30"></sub> How It Works? </div>
 ```
 Every 5 minutes (via GitHub Actions Loop or Local Task)
                       ↓
@@ -127,7 +127,7 @@ When no new quest is found → End
 ```
 ---
 
-# <div align="left"><sub><img src="https://raw.githubusercontent.com/mc-none-vn/discord-quests/refs/heads/assets/file.png" height="30"></sub> File state.json </div>
+# <div align="left"><sub><img src="https://raw.githubusercontent.com/KanamotoKumo/send-discord-quests/refs/heads/assets/file.png" height="30"></sub> File state.json </div>
 This file is automatically managed by the script. You can:
 - **Read**: Directly view it on GitHub or local storage.
 - **Reset**: Delete all IDs inside `sent_ids` → The bot will resend all currently active quests.
@@ -136,13 +136,13 @@ This file is automatically managed by the script. You can:
 
 ---
 
-# <div align="left"><sub><img src="https://raw.githubusercontent.com/mc-none-vn/discord-quests/refs/heads/assets/acknowledgements.png" height="30"></sub> Acknowledgements </div>
+# <div align="left"><sub><img src="https://raw.githubusercontent.com/KanamotoKumo/send-discord-quests/refs/heads/assets/acknowledgements.png" height="30"></sub> Acknowledgements </div>
 Special thanks to the following repository for inspiring this project:
 - [cc-plugins](https://github.com/BachLe2000/cc-plugins/tree/master)
 
 ---
 
-###### <footer><div align="center">© 2026 Korchi Community. All rights reserved.</div></footer>
+###### <footer><div align="center">© 2026 Mc's Team. All rights reserved.</div></footer>
 
 <!-- README_VARIABLES -->
-[background]: https://raw.githubusercontent.com/mc-none-vn/discord-quests/refs/heads/assets/discordQuests.png
+[background]: https://raw.githubusercontent.com/KanamotoKumo/send-discord-quests/refs/heads/assets/discordQuests.png
