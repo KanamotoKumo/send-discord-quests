@@ -69,7 +69,7 @@ async function main() {
         log('Không có quest mới. Tiến hành dọn state hết hạn.');
     } else {
         log('Đang chuẩn bị tài nguyên hình ảnh từ GitHub...');
-        let avatarWebhook = await getAttachments('quests.png');
+        let avatarWebhook = await getAttachments('avatar.png');
         if (!avatarWebhook) avatarWebhook = await getAttachments('discord.webp');
         const rewardIconUrl = 'https://cdn.discordapp.com/assets/content/fb761d9c206f93cd8c4e7301798abe3f623039a4054f2e7accd019e1bb059fc8.webm';
         const emptyIconUrl = await getAttachments('empty.png');
